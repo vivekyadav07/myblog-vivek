@@ -1,0 +1,113 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Mysite | Home{% endblock %}
+
+{% block content %}
+
+<!-- Navbar section -->
+<nav class="navbar navbar-expand-md">
+    <!-- Brand -->
+    <a class="navbar-brand ml-2 ml-lg-5">█▓▒­░⡷⠂VɨνΞƙ⠐⢾░▒▓█</a>
+  
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <i class="navbar-toggler-icon fas fa-bars"></i>
+    </button>
+  
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav ml-lg-auto ml-2 mr-lg-5">
+            <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">𝙷̷𝙾̷𝙼̷𝙴̷ </a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">𝙱̷𝙻̷𝙾̷𝙶̷</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">𝙲̷𝙾̷𝙽̷𝚃̷𝙰̷𝙲̷𝚃̷</a></li>
+            
+        </ul>
+    </div>
+</nav>
+
+{% block main-content %}
+<div class="container">
+    <div class="row mt-5 mb-5">
+
+        <div class="col-2">
+            <img src="{% static 'main/images/myphoto_400x400.jpg' %}" alt="My photo" class="img-fluid rounded" width="240px">
+        </div>
+
+        <div class="col-10">
+            <h1>🆅🅸🆅🅴🅺 🄺🅁 🅈🄰🄳🄰🅅</h1>
+            <p>𝙄𝙄𝙄𝙏𝙞𝙖𝙣.𝘾𝙎𝙀.𝙆𝙖𝙡𝙮𝙖𝙣𝙞
+               <br> . 𝙰̷ 𝚙̷𝚎̷𝚛̷𝚜̷𝚘̷𝚗̷ 𝚠̷𝚒̷𝚝̷𝚑̷ 𝚍̷𝚛̷𝚎̷𝚊̷𝚖̷ 𝚘̷𝚏̷ 𝙻̷𝚘̷𝚟̷𝚎̷ 𝚒̷𝚗̷ 𝙻̷𝚘̷𝚟̷𝚎̷ 𝚠̷𝚒̷𝚝̷𝚑̷ 𝚗̷𝚊̷𝚝̷𝚞̷𝚛̷𝚎̷ 𝚊̷𝚗̷𝚍̷ 𝚂̷𝚌̷𝚒̷𝚎̷𝚗̷𝚌̷𝚎̷.
+               <br> [𝓱ɑˈ𝓴𝓾𝓷ɑ 𝓶ɑˈ𝓽ɑ𝓽ɑ] 𝙻̷𝚎̷𝚝̷'𝚜̷ 𝚈̷𝚘̷𝚞̷𝚛̷ 𝚍̷𝚎̷𝚙̷𝚛̷𝚎̷𝚜̷𝚜̷𝚒̷𝚘̷𝚗̷ 𝚝̷𝚘̷ 𝚋̷𝚎̷ 𝚍̷𝚎̷𝚙̷𝚛̷𝚎̷𝚜̷𝚜̷𝚎̷𝚍̷
+            </p>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5">█▓▒­░⡷⠂ᗯᗝᖇᛕ ᗴ᙭ᑭᗴᖇᎥᗴᑎᑕᗴ⠐⢾░▒▓█</h1>
+    
+    {% for work in work_experience %}
+    <div>
+        <h2>{{ work.title }}</h2>
+        <p><small>{{ work.workplace }}</small></p>
+        <p>{{ work.discription }}</p>
+        <p><small>Starting date: {{ work.starting_date|date:"F d, Y" }} | Ending date: {{ work.ending_date|date:"F d, Y" }}</small></p>
+    </div><hr>
+    {% endfor %}
+
+</div>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5">ᑕᗴᖇ丅ᎥᖴᎥᑕᗩ丅ᗴᔕ </h1>
+    
+    {% for cert in certificate %}
+    <div>
+        <h2>{{ cert.title }}</h2>
+        <p><small>Url: <a href="{{ cert.url }}">{{ cert.url }}</a></small></p>
+        <p>{{ cert.discription }}</p>
+        <p><small>Issue date: {{ cert.issue_date|date:"F d, Y" }}</small></p>
+    </div><hr>
+    {% endfor %}
+
+</div>
+
+<div class="container mt-5 mb-5">
+    <h1 class="text-center mb-5">ᑭᖇᗝᒎᗴᑕ丅ᔕ</h1>
+    
+    {% for proj in project %}
+    <div>
+        <h2>{{ proj.title }}</h2>
+
+        {% if proj.url %}
+            <p><small>Url: <a href="{{ proj.url }}">{{ proj.url }}</a></small></p>
+        {% endif %}
+
+        <p>{{ proj.discription }}</p>
+        <p><small>Starting date: {{ proj.starting_date|date:"F d, Y" }} | Ending date: {{ proj.ending_date|date:"F d, Y" }}</small></p>
+    </div><hr>
+    {% endfor %}
+
+</div>
+{% endblock %}
+
+<!-- Footer section -->
+<div class="footer pt-5">
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <p class="text-center" style="font-size: 26px; margin-bottom: -1px;">Visit Me <i class="fas fa-heart" style="font-size: 18px; color: red;"></i></p>
+                <ul class="list-unstyled list-inline social text-center">
+                    <li class="list-inline-item mr-3"><a href="https://github.com/vivekyadav07" target="_blank"><i class="fab fa-github"></i></a></li>
+                    <li class="list-inline-item mr-3"><a href="https://twitter.com/vivekkryadav179" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                    <li class="list-inline-item mr-3"><a href="https://www.linkedin.com/in/vivek-yadav-126860102/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li class="list-inline-item"><a href="mailto:vivekiiit72@gmail.com" target="_blank"><i class="far fa-envelope"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
